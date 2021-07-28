@@ -96,33 +96,22 @@
   \fi
 \fi
 
-% do not use inputenc and do not automatically load lmodern to avoid problems with German 
-% charactes, see
-% https://tex.stackexchange.com/questions/496630/lualatex-problems-with-german-characters
+% for luatex and xetex, do not use inputenc and fontenc
+% see https://tex.stackexchange.com/a/496643
 \ifxetexorluatex
-%     \RequirePackage{fontspec}
-%     \defaultfontfeatures{Ligatures=TeX}
-%     \RequirePackage{unicode-math}
-%     \setmainfont{Latin Modern}
-%     \setsansfont{Latin Modern Sans}
-%     \setmathfont{Latin Modern Math}
-%     \ifluatex
-%         \usepackage{luatextra}
-%         \usepackage{lualatex-math} %loads fontspec
-%         \usepackage{shellesc} % fix a bug for lualatex shellescape
-%     \fi
+  \RequirePackage{fontspec}
+  \defaultfontfeatures{Ligatures=TeX}
+  \RequirePackage{unicode-math}
+  \setmainfont{Latin Modern Roman}
+  \setsansfont{Latin Modern Sans}
+  \setmonofont{Latin Modern Mono}
+  \setmathfont{Latin Modern Math} 
 \else
-    \RequirePackage[utf8]{inputenc}
-%     \RequirePackage[utf8]{inputenx}
-%     %additions for utf8
-%     \input{ix-utf8enc.dfu}
-    \RequirePackage[T1]{fontenc}
-    % loading lmodern can cause issues with certain special characters. avoid. 
-%     \IfFileExists{lmodern.sty}%
-%         {\RequirePackage{lmodern}}%
-%         {}
-%     \fi
+  \RequirePackage[utf8]{inputenc}
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage{lmodern}
 \fi
+
 % hyper links (hyperref is loaded at the end of the preamble to pass options required by loaded packages such as CJK)
 \newcommand*\pdfpagemode{UseNone}% do not show thumbnails or bookmarks on opening (on supporting browsers); set \pdfpagemode to "UseOutlines" to show bookmarks
 \RequirePackage{url}
